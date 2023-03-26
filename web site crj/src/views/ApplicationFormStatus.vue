@@ -5,7 +5,10 @@
         </div>
         <div v-else>
             <div class="d-flex justify-space-around">
-                <h1>{{ internship.status }}</h1>
+          <v-chip class="ma-2 grey" v-if="internship.status=='UNDEFINED'" > 
+            {{ internship.status }} 
+          </v-chip>
+                <v-chip class="ma-2" v-else :class="[internship.status=='ACCEPTED' ? 'green' : 'red']">{{ internship.status }} </v-chip>
                 <v-spacer></v-spacer>
                 <v-btn
                 v-if="internship.status == 'ACCEPTED'"
@@ -44,13 +47,13 @@ export default {
 
     methods: {
         async get() {
-            if(!this.$session.exists() || this.$session.get('key').accountType != 'Trainee') {
+            if(!this.$session.exists() || this.$session.get('key').accountType != 'Intern') {
                 this.internship = null
                 this.file = null
             }
             else {
                 this.internship = await InternshipApplicationServices.getApplication(this.$session.get('key').id);
-                console.log(this.internship)
+                //console.log(this.internship)
                 if(this.internship != null) {
                     if(this.internship.status == 'ACCEPTED') {
                         this.file = await InternAccountServices.getFile(this.$session.get('key').id)

@@ -26,7 +26,12 @@
           :key="openJob.jobSeekerId"
         >
           <td>{{ openJob.jobSeekerOpenJobId.jobSeekerId }}</td>
-          <td>{{ openJob.status }}</td>
+          <td>
+            <v-chip class="ma-2 grey" v-if="openJob.status=='UNDEFINED'" > 
+            {{ openJob.status }} 
+          </v-chip>
+                <v-chip class="ma-2" v-else :class="[openJob.status=='ACCEPTED' ? 'green' : 'red']">{{ openJob.status }} </v-chip>  
+          </td>
           <td v-if="openJob.status == 'ACCEPTED'">Congratulation, you will be expecting an Email from us.</td>
           <td v-if="openJob.status == 'REFUSED'">Thank you for your interest, better luck next time.</td>
           <td v-if="openJob.status == 'UNDEFINED'">Unread.</td>
@@ -56,7 +61,7 @@ export default {
             this.openJobs = await JobOfferApplicationServices.getApplication(this.$session.get('key').id);
             if(this.openJobs.length) {
             for(let i = 0; i < this.openJobs.length; i++) {
-              console.log(this.openJobs.length)
+              //console.log(this.openJobs.length)
               const title = await JobOfferServices.getById(this.openJobs[i].jobSeekerOpenJobId.jobOfferId)
               this.openJobs[i].jobSeekerOpenJobId.jobSeekerId = title.title;
             }

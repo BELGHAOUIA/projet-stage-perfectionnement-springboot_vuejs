@@ -41,7 +41,7 @@
           <v-date-picker
           v-model="date"
           scrollable
-          color="teal"
+          color="primary"
           >
           <v-spacer></v-spacer>
           <v-btn
@@ -64,8 +64,13 @@
 </v-card-title>
 
 <br>
-
+<div v-if="filteredNewsTellers == ''" justify="center" align="center">
+          <v-chip class="ma-2 grey">
+            No results matched your search.
+          </v-chip>
+        </div>
 <v-card
+v-else
 v-for="newsTeller in filteredNewsTellers"
 :key="newsTeller.newsTellerId"
 class="mb-5"

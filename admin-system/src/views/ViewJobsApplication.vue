@@ -23,8 +23,12 @@
         </v-card-title>
 
         <br>
-
-      <v-simple-table>
+        <div v-if="filteredJobs == ''" justify="center" align="center">
+          <v-chip class="ma-2 grey">
+            No results matched your search.
+          </v-chip>
+        </div>
+      <v-simple-table v-else>
   <template v-slot:default>
     <thead>
       <tr>
@@ -63,9 +67,17 @@
         </v-btn>  
         </td>
         
-        <td>{{ i.status }}</td>
+        <td>
+          <v-chip class="ma-2 grey" v-if="i.status=='UNDEFINED'" > 
+            {{ i.status }} 
+          </v-chip>
+          <v-chip class="ma-2" v-else :class="[i.status=='ACCEPTED' ? 'green' : 'red']"> 
+            {{ i.status }} 
+          </v-chip>
+        </td>
         <td>
           <v-btn
+          :disabled="i.status=='ACCEPTED'"
           class="mr-2"
           color="accent"
           @click="response(i.jobSeekerOpenJobId, true)"
@@ -78,6 +90,7 @@
           </v-btn>
 
           <v-btn
+          :disabled="i.status=='REFUSED'"
           color="error"
           @click="response(i.jobSeekerOpenJobId, false)"
           >

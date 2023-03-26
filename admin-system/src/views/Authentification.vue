@@ -41,10 +41,11 @@
           <v-card-actions>
             
             <v-btn 
+            :loading="loading"
             elevation="16"
-            :disabled="!valid"
+            :disabled="!valid || loading"
             color="accent"
-            @click="validate"
+            @click="load()"
             tile
             x-large
             >
@@ -91,6 +92,7 @@ export default {
                 show1: false,
                 password: '',
                 usernName: '',
+                loading: false,
         }
     },
     methods: {
@@ -102,7 +104,7 @@ export default {
             this.snackbar = true;
             }
             else { 
-                await AdminAccountService.add({adminUserName: this.usernName, password: this.password})
+               // await AdminAccountService.add({adminUserName: this.usernName, password: this.password})
             if(await AdminAccountService.existsByIdAndPassword(this.usernName, this.password)) {
                     this.$session.start()
                     this.$session.set('key', this.usernName)
@@ -123,7 +125,12 @@ export default {
                 else if (this.$session.exists()){
                   this.$router.push('/dashboard')
                 }
-              }
+              },
+              load () {
+                  this.loading = true
+                  setTimeout(() => (this.loading = false), 3000)
+                  this.validate();
+                },
               }
               ,
               created () {
@@ -132,3 +139,41 @@ export default {
 
 };
 </script>
+<style>
+  .custom-loader {
+    animation: loader 1s infinite;
+    display: flex;
+  }
+  @-moz-keyframes loader {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @-webkit-keyframes loader {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @-o-keyframes loader {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes loader {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>

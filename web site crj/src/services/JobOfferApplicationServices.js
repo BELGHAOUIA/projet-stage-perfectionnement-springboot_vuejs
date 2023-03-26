@@ -14,14 +14,14 @@ export default {
 
   async add(a) {
     return apiClient.post("/addJobSeekerOpenJob", a).then((response) => {
-     // console.log(response.data);
+      //console.log(response.data);
       return response.data;
     });
   },
 
   async getApplication(id) {
     return apiClient.get(`/getAllJobApplicationById?id=${id}`).then((response) => {
-       console.log(response.data);
+       //console.log(response.data);
       return response.data;
     });
   },

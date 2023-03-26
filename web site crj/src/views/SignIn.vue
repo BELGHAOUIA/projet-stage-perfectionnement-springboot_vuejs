@@ -121,7 +121,7 @@ export default {
                   v => /.+@.+/.test(v) || 'E-mail must be valid',
                 ],
                 types: [
-                  "Employee","Job Seeker", "Trainee"
+                  "Employee","Job Seeker", "Intern"
                 ],
                 password: '',
                 email: '',
@@ -154,7 +154,7 @@ export default {
                     UserName: e.firstName,
                     accountType: this.accountType
                   })
-                    console.log(this.$session.get('key'))
+                    //console.log(this.$session.get('key'))
                     this.$router.go()
             } 
             else {
@@ -181,7 +181,7 @@ export default {
                 }
               }
 
-              else if(this.accountType == 'Trainee'){
+              else if(this.accountType == 'Intern'){
             if(await InternAccountService.existsByIdAndPassword(this.email, this.password)) {
               const e = await InternAccountService.getById(this.email)
                     this.$session.start()

@@ -101,7 +101,7 @@ import EmployeeAccountServices from '../services/EmployeeAccountServices';
             route: "/ApplicationFormStatus"},
             
           ],
-          title: 'Trainee',
+          title: 'Intern',
           route: ""
         },
         {
@@ -132,7 +132,7 @@ import EmployeeAccountServices from '../services/EmployeeAccountServices';
         }
         if(this.$session.get('key').accountType == 'Employee'){
           this.items[4].action = "";
-          console.log("employee?" + this.$session.get('key').accountType == 'Employee')
+          //console.log("employee?" + this.$session.get('key').accountType == 'Employee')
           await EmployeeAccountServices.getFile(this.$session.get('key').id) 
           .then(response => {
                     const blob = new Blob([response]);

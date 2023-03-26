@@ -27,14 +27,14 @@ export default {
 
    async getById(id) {
     return apiClient.get(`/getInternAccountById/${id}/`).then((response) => {
-      console.log(response.data);
+      //console.log(response.data);
       return response.data;
      });
    },
 
    async existsByIdAndPassword(id, password) {
     return apiClient.get(`/traineeExistsByIdAndPass?id=${id}&password=${password}`).then((response) => {
-      console.log(response.data);
+      //console.log(response.data);
       return response.data;
     });
   },

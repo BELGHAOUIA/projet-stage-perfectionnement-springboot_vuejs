@@ -196,7 +196,7 @@ export default {
     },
     methods: {
         async validate() {
-            if(this.$session.exists() && this.$session.get("key").accountType == "Trainee" ) {
+            if(this.$session.exists() && this.$session.get("key").accountType == "Intern" ) {
             this.valid = this.$refs.form.validate();
           if(!this.valid) {
             this.text = 'Please fill the form correctly'

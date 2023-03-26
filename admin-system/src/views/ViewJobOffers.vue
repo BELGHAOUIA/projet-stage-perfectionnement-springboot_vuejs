@@ -68,8 +68,12 @@
       </v-dialog>
         </v-card-title>
         <br>
-
-    <template >
+        <div v-if="filteredJobOffers == ''" justify="center" align="center">
+          <v-chip class="ma-2 grey">
+            No results matched your search.
+          </v-chip>
+        </div>
+    <template v-else>
         <v-timeline
       :dense="$vuetify.breakpoint.smAndDown"
     >

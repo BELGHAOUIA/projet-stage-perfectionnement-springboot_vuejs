@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-subheader class="py-0 ma-0">
-            <h3>Statics</h3>
+            <h3>Statistics</h3>
         </v-subheader>
         <v-divider></v-divider>
                 <div class="d-lg-flex">
@@ -46,7 +46,7 @@
                         <v-card elevation="2" class="rounded-lg" style="border-bottom: 10px solid #42A5F5;">
                             <v-card-text class="d-inline-flex justify-space-between">
                                 <div>
-                                    <strong>TRAINEES ACCOUNTS TOTAL COUNT</strong>
+                                    <strong>INTERNS ACCOUNTS TOTAL COUNT</strong>
                                 </div>
                                 <v-icon color="#42A5F5" large>mdi-account</v-icon>
                                 <v-avatar size="80" style="border: 3px solid #42A5F5">
@@ -112,7 +112,7 @@ import 'echarts/lib/component/title';
                                         }
                                     ],
                                     title: {
-                                        text: 'Job Applications Statics',
+                                        text: 'Job Applications Statistics',
                                         x: 'center',
                                         textStyle: {
                                         fontSize: 24
@@ -136,7 +136,7 @@ import 'echarts/lib/component/title';
                                         }
                                     ],
                                     title: {
-                                        text: 'internship Applications Statics',
+                                        text: 'internship Applications Statistics',
                                         x: 'center',
                                         textStyle: {
                                         fontSize: 24
@@ -160,14 +160,14 @@ import 'echarts/lib/component/title';
                 let refused = await InternshipApplicationServices.refused();
 
                 this.internshipApplication.series[0].data = [notDefined,accepted,refused]
-                console.log(this.internshipApplication.series.data)
+               // console.log(this.internshipApplication.series.data)
 
                  notDefined = await JobApplicationServices.undefined();
                  accepted = await JobApplicationServices.accepted();
                  refused = await JobApplicationServices.refused();
 
                 this.jobApplication.series[0].data = [notDefined,accepted,refused]
-                console.log(this.internshipApplication.series.data)
+               // console.log(this.internshipApplication.series.data)
 
             }
         },

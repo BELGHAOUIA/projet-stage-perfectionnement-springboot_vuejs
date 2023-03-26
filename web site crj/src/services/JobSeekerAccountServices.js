@@ -48,7 +48,7 @@ export default {
 
    async existsByIdAndPassword(id, password) {
     return apiClient.get(`/jobSeekerExistsByIdAndPass?id=${id}&password=${password}`).then((response) => {
-      console.log(response.data);
+      //console.log(response.data);
       return response.data;
     });
   },

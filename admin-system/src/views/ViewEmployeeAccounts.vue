@@ -27,7 +27,12 @@
         </v-card-title>
 
         <br>
-        <v-simple-table>
+        <div v-if="filteredEmployees == ''" justify="center" align="center">
+          <v-chip class="ma-2 grey">
+            No results matched your search.
+          </v-chip>
+        </div>
+        <v-simple-table v-else>
     <template v-slot:default>
       <thead>
         <tr>
@@ -65,11 +70,10 @@
           <td>{{ employee.phoneNumber }}</td>
           <td>{{ employee.employeeDepartment }}</td>
           <td>{{ employee.employeeRole }}</td>
-         
-         
-         
-          <td>
-            <v-icon       
+
+          <td class="d-flex">
+            <v-icon    
+            color="accent"   
                  class="mr-2"
                  @click.stop="dialog = true, setTargetedID(employee.email)"
                >
@@ -165,6 +169,7 @@
     </v-dialog>
       
     <v-icon
+    color="warning"
         @click="deleteItem(employee.email)"
       >
         mdi-delete

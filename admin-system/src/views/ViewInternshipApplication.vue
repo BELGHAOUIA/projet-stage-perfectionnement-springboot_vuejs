@@ -27,8 +27,12 @@
         </v-card-title>
 
         <br>
-
-        <v-simple-table>
+        <div v-if="filteredInternship == ''" justify="center" align="center">
+          <v-chip class="ma-2 grey">
+            No results matched your search.
+          </v-chip>
+          </div>
+        <v-simple-table v-else>
     <template v-slot:default>
       <thead>
         <tr>
@@ -67,11 +71,19 @@
           <td>{{ i.instituteName }}</td>
 
           <td>{{ i.license }}</td>
-          <td>{{ i.status }}</td>
-
           <td>
-            <v-btn
-            class="mr-2"
+            <v-chip class="ma-2 grey" v-if="i.status=='UNDEFINED'" > 
+            {{ i.status }} 
+          </v-chip>
+            <v-chip class="ma-2" v-else :class="[i.status=='ACCEPTED' ? 'green' : 'red']">
+              {{ i.status }}
+            </v-chip>
+          </td>
+
+          <td class="d-flex">
+            <v-btn 
+            :disabled="i.status=='ACCEPTED'"
+            class="mr-2 "
             color="accent"
             @click="response(i.traineeEmail, true)"
             >
@@ -79,10 +91,11 @@
                 >
                     mdi-check
                 </v-icon>
-                accept
+               
             </v-btn>
 
             <v-btn
+            :disabled="i.status=='REFUSED'"
             color="error"
             @click="response(i.traineeEmail, false)"
             >
@@ -90,7 +103,7 @@
                  >
                      mdi-close
                  </v-icon>
-                 decline
+                
             </v-btn>
           </td>
         </tr>

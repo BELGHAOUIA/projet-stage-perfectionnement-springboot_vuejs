@@ -162,7 +162,7 @@
         v => /.+@.+/.test(v) || 'E-mail must be valid',
       ],
       types: [
-                "Job Seeker", "Trainee"
+                "Job Seeker", "Intern"
              ],
        accountType: '',
       firstName: '',
@@ -192,7 +192,7 @@
             }
 
             if(this.accountType == "Job Seeker" && await JobSeekerAccountServices.existsById(this.email) ||
-            this.accountType == "Trainee" && await InternAccountServices.existsById(this.email)
+            this.accountType == "Intern" && await InternAccountServices.existsById(this.email)
             ) {
               this.text = this.email + ' Account Already Exists In The Data Base'
               this.color= 'red'
@@ -200,7 +200,7 @@
 
             else {
               
-          if(this.accountType == 'Trainee') {
+          if(this.accountType == 'Intern') {
             if (await InternAccountServices.add(person)) {
               this.text = this.firstName + ' ' + this.lastName + ' Account Created Successfuly';
               this.color= 'green'

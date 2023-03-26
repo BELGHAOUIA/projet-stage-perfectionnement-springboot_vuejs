@@ -60,7 +60,13 @@
         </v-card-title>
 
         <br>
+        <div v-if="filteredNewsTellers == ''" justify="center" align="center">
+          <v-chip class="ma-2 grey">
+            No results matched your search.
+          </v-chip>
+        </div>
         <v-row
+        v-else
         justify="space-around"
         >
 
@@ -258,7 +264,7 @@ export default {
               else {
                 this.valid = false;
               }
-              console.log(this.valid)
+             // console.log(this.valid)
               if(this.valid) {
                 this.dialog = false
                 let newsTeller = {

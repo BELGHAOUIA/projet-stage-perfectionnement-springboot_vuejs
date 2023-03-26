@@ -108,7 +108,7 @@
             route: "/ApplicationFormStatus"},
             
           ],
-          title: 'Trainee',
+          title: 'Intern',
           route: ""
         },
         {

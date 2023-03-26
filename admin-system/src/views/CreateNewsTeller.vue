@@ -101,7 +101,7 @@
           formData.append('file', fileString)
           let id = null
           id = await NewsTellerServices.add(newsTeller);
-          console.log(id);
+          //console.log(id);
           if(id != null) {
               NewsTellerServices.putFile(id, formData);
               this.text = 'News Teller Post Created Successfuly';
